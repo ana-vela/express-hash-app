@@ -5,16 +5,19 @@ const { response } = require("express");
 const saltRounds = 10;
 const plainText = "ReskillAmericans123";
 const port = 4000;
-const inputText = "SampleTextPw";
+let hashedPassword;
 
 app.use(express.json());
 
 bcrypt.hash(plainText, saltRounds).then((hash) => {
+  hashedPassword = hash;
   console.log(hash);
- 
-  bcrypt.compare(inputText, hash).then(result => {
-    console.log(result);
-})
+});
+
+app.post("/", (req, res) => {
+  bcrypt.compare(req.body.password, hashedPassword).then((result) => {
+    res.json({ result });
+  });
 });
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
