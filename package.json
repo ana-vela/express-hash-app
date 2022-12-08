@@ -19,6 +19,6 @@
   "homepage": "https://github.com/ana-vela/express-hash-app#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "express": "^4.17.1"
+    "express": "^4.18.2"
   }
 }
